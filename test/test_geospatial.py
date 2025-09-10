@@ -1,4 +1,5 @@
-from app.service.geospatial import SearchPlacesDto, search_places
+import json
+from app.service.geospatial import SearchPlacesDto, _search_places
 
 
 def test_search_places_return_200():
@@ -8,6 +9,6 @@ def test_search_places_return_200():
         price="1",
         open_now=True
     )
-    response = search_places(query)
+    response = _search_places(query)
     assert response.status_code == 200
 

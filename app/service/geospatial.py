@@ -2,7 +2,6 @@ import os
 import requests
 from pydantic import BaseModel
 
-
 class SearchPlacesDto(BaseModel):
     query: str
     near: str
@@ -10,16 +9,10 @@ class SearchPlacesDto(BaseModel):
     open_now: bool
 
 
-class RestaurantDto(BaseModel):
-    name: str
-    address: str
-    rating: float
-    operating_hours: str
-
 # - **Cuisine**
 # - **Price Level**
 
-def search_places(query_data: SearchPlacesDto):
+def _search_places(query_data: SearchPlacesDto):
     query_data = {
         **query_data.model_dump(),
         "fields": "name,location,tastes,menu,rating,price,hours",
@@ -34,3 +27,7 @@ def search_places(query_data: SearchPlacesDto):
         }
     )
     return response
+
+
+def search_places(query_data: SearchPlacesDto):
+    pass
