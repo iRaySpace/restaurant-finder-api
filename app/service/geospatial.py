@@ -11,14 +11,19 @@ class SearchPlacesDto(BaseModel):
     price: str
     open_now: bool
 
-
 # - **Cuisine**
 # - **Price Level**
+
+
+FSQ_CATEGORY_IDS = [
+    "4d4b7105d754a06374d81259", # Restaurant
+]
 
 def _search_places(query_data: SearchPlacesDto):
     query_data = {
         **query_data.model_dump(),
         "fields": "name,location,tastes,menu,rating,price,hours",
+        "fsq_category_ids": FSQ_CATEGORY_IDS,
     }
     response = requests.get(
         "https://places-api.foursquare.com/places/search",

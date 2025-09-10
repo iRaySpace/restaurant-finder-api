@@ -21,4 +21,15 @@ def test_search_places_return_geospatial_response():
         open_now=True
     )
     response = search_places(query)
-    print(response)
+    assert response is not None
+
+
+def test_search_places_return_geospatial_response():
+    query = SearchPlacesDto(
+        query="sushi",
+        near="California",
+        price="1",
+        open_now=True
+    )
+    response = search_places(query)
+    assert response is not None
