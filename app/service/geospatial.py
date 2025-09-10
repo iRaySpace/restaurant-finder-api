@@ -2,7 +2,7 @@ import os
 import requests
 from pydantic import BaseModel
 from app.mapper import map_geospatial_response
-from app.dto import GeospatialResponse
+from app.dto import SearchPlacesDto, GeospatialResponse
 
 
 FSQ_CATEGORY_IDS = [
