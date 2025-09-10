@@ -9,7 +9,7 @@ class SearchPlacesDto(BaseModel):
     query: str
     near: str
     price: str
-    open_now: bool
+    open_now: bool = True
 
 # - **Cuisine**
 # - **Price Level**
@@ -22,7 +22,7 @@ FSQ_CATEGORY_IDS = [
 def _search_places(query_data: SearchPlacesDto):
     query_data = {
         **query_data.model_dump(),
-        "fields": "name,location,tastes,menu,rating,price,hours",
+        "fields": "name,location,categories,rating,price,hours",
         "fsq_category_ids": FSQ_CATEGORY_IDS,
     }
     response = requests.get(

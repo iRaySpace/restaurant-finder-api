@@ -13,7 +13,14 @@ def map_geospatial_response(response_data: dict) -> GeospatialResponse:
 def _map_result(data: dict) -> RestaurantDto:
     return RestaurantDto(
         name=data.get("name"),
+        cuisine=_map_cuisine(data.get("categories")),
         address=data.get("location").get("formatted_address"),
         operating_hours=data.get("hours").get("display"),
         rating=data.get("rating"),
+        price_level=data.get("price")
     )
+
+
+def _map_cuisine(data: dict) -> str:
+    short_names = map(lambda category: category.get("short_name"), data)
+    return ", ".join(short_names)
