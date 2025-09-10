@@ -8,12 +8,9 @@ from app.dto import GeospatialResponse
 class SearchPlacesDto(BaseModel):
     query: str
     near: str
-    price: str
-    open_now: bool = True
-
-# - **Cuisine**
-# - **Price Level**
-
+    min_price: str
+    max_price: str
+    open_now: bool
 
 FSQ_CATEGORY_IDS = [
     "4d4b7105d754a06374d81259", # Restaurant

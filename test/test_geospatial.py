@@ -6,7 +6,8 @@ def test_search_places_return_200():
     query = SearchPlacesDto(
         query="sushi",
         near="downtown Los Angeles",
-        price="1",
+        min_price="1",
+        max_price="2",
         open_now=True
     )
     response = _search_places(query)
@@ -17,7 +18,8 @@ def test_search_places_return_geospatial_response():
     query = SearchPlacesDto(
         query="sushi",
         near="downtown Los Angeles",
-        price="1",
+        min_price="1",
+        max_price="2",
         open_now=True
     )
     response = search_places(query)
@@ -28,7 +30,8 @@ def test_search_places_return_geospatial_response():
     query = SearchPlacesDto(
         query="sushi",
         near="California",
-        price="1",
+        min_price="1",
+        max_price="2",
         open_now=True
     )
     response = search_places(query)
