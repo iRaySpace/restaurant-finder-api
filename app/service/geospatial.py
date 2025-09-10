@@ -5,16 +5,10 @@ from app.mapper import map_geospatial_response
 from app.dto import GeospatialResponse
 
 
-class SearchPlacesDto(BaseModel):
-    query: str
-    near: str
-    min_price: str
-    max_price: str
-    open_now: bool
-
 FSQ_CATEGORY_IDS = [
     "4d4b7105d754a06374d81259", # Restaurant
 ]
+
 
 def _search_places(query_data: SearchPlacesDto):
     query_data = {

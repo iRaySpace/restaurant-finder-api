@@ -1,5 +1,6 @@
 import json
-from app.service.geospatial import SearchPlacesDto, _search_places, search_places
+from app.dto import SearchPlacesDto
+from app.service.geospatial import _search_places, search_places
 
 
 def test_search_places_return_200():

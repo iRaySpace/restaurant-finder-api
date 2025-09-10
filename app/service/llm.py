@@ -1,6 +1,6 @@
 import os
 from openai import OpenAI
-from app.service.geospatial import SearchPlacesDto
+from app.dto import SearchPlacesDto
 
 
 client = OpenAI()

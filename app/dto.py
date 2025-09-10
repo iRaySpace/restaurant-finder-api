@@ -2,6 +2,14 @@ from pydantic import BaseModel
 from typing import List
 
 
+class SearchPlacesDto(BaseModel):
+    query: str
+    near: str
+    min_price: str
+    max_price: str
+    open_now: bool
+
+
 class RestaurantDto(BaseModel):
     name: str
     cuisine: str
