@@ -1,6 +1,9 @@
 import os
 import requests
 from pydantic import BaseModel
+from app.mapper import map_geospatial_response
+from app.dto import GeospatialResponse
+
 
 class SearchPlacesDto(BaseModel):
     query: str
@@ -29,5 +32,5 @@ def _search_places(query_data: SearchPlacesDto):
     return response
 
 
-def search_places(query_data: SearchPlacesDto):
-    pass
+def search_places(query_data: SearchPlacesDto) -> GeospatialResponse:
+    return map_geospatial_response(_search_places(query_data))

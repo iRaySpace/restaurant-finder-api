@@ -5,11 +5,11 @@ from typing import List
 class RestaurantDto(BaseModel):
     name: str
     address: str
-    rating: float
     operating_hours: str
+    rating: float | None = None
 
 
 class GeospatialResponse(BaseModel):
     total: int
     limit: int
-    items: List[RestaurantDto] = []
+    data: List[RestaurantDto] = []
