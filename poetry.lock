@@ -1145,6 +1145,24 @@ files = [
 anyio = ">=3.0.0"
 
 [[package]]
+name = "watchtower"
+version = "3.4.0"
+description = "Python CloudWatch Logging"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "watchtower-3.4.0-py3-none-any.whl", hash = "sha256:5eac65cbf2a7350bb43c3518485230a6135ed7dec7ccb88468828d68ab9fea26"},
+    {file = "watchtower-3.4.0.tar.gz", hash = "sha256:7d3c116aff72a73ce8f6fc0addd1d0daa04d3f9d53d87cedca3a5a65a264bf7d"},
+]
+
+[package.dependencies]
+boto3 = ">=1.9.253,<2"
+
+[package.extras]
+test = ["build", "coverage", "mypy", "pyyaml", "ruff", "wheel"]
+
+[[package]]
 name = "websockets"
 version = "15.0.1"
 description = "An implementation of the WebSocket Protocol (RFC 6455 & 7692)"
@@ -1226,4 +1244,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "7729b0924b7895610c45aeba29b20ec02dd2bc320173d4a71dfe22c72fd001c5"
+content-hash = "b9c91aeffa63a92981a2c449f5460d2d274d9e3f4516c628aeeddd09231bb568"
