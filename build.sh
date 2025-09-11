@@ -2,6 +2,11 @@
 
 ECR_URL=$1
 
+if [ ! $ECR_URL ]; then
+    echo "ECR_URL is not set. Follow this command: ./build.sh <ecr-url>"
+    exit 1
+fi
+
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_URL
 
 docker build -t restaurant-finder-api .
