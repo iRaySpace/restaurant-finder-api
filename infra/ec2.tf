@@ -27,14 +27,14 @@ resource "aws_instance" "restaurant_finder_instance" {
   }
 
   user_data = <<EOF
-    #!/bin/bash
-    sudo yum update -y
-    sudo yum install -y docker
-    sudo usermod -a -G docker ec2-user
-    sudo service docker start
-    docker ps
-    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${var.ecr_url}
-    docker run -p 80:8000 restaurant-finder-api
+#!/bin/bash
+sudo yum update -y
+sudo yum install -y docker
+sudo usermod -a -G docker ec2-user
+sudo service docker start
+docker ps
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${var.ecr_url}
+docker run --name restaurant-finder-api -p 80:8000 ${var.ecr_url}/restaurant-finder-api:latest
 EOF
 
 }
