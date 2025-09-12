@@ -37,6 +37,7 @@ jobs:
         id: build-push-ecr
         shell: bash
         env:
+          ECR_REGISTRY: ${{ inputs.ecr_registry }}
           IMAGE_TAG: ${{ inputs.image_tag }}
         run: |
           docker build -t "$ECR_REGISTRY/restaurant-finder-api:$IMAGE_TAG" .
