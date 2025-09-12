@@ -36,6 +36,21 @@ resource "aws_cloudwatch_dashboard" "restaurant_finder_dashboard" {
             ["AWS/EC2", "NetworkIn", "InstanceId", aws_instance.restaurant_finder_instance.id]
           ]
         }
+      },
+      {
+        "x" : 0,
+        "y" : 0,
+        "width" : 12,
+        "height" : 12,
+        "type" : "metric",
+        "properties" : {
+          "title" : "Total Requests",
+          "region" : "us-east-1"
+          "period" : 60,
+          "metrics" : [
+            ["RestaurantFinderAPI", "Request", "InstanceId", aws_instance.restaurant_finder_instance.id]
+          ]
+        }
       }
     ]
   })
