@@ -19,4 +19,4 @@ def register_cw_metrics():
         return
 
     boto3_session = Session(region_name="us-east-1")
-    _metrics = boto3_session.client("logs")
+    _metrics = boto3_session.client("cloudwatch")
