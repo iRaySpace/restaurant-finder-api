@@ -1,12 +1,7 @@
-Here’s a well-structured **README.md** for your project:
-
-````markdown
 # LLM-Driven Restaurant Finder API
 
 This project is a **FastAPI**-based service that leverages **OpenAI** and **Foursquare Places API** to find restaurants based on natural language queries.  
 The application is containerized with Docker, deployed via **Terraform** (IaC), and integrated with **GitHub Actions** for CI/CD.
-
----
 
 ## 🚀 Features
 
@@ -14,7 +9,7 @@ The application is containerized with Docker, deployed via **Terraform** (IaC), 
   - `GET /api/ping` – Simple ping endpoint to verify that the API is running.
 
 - **Restaurant Finder**
-  - `POST /api/execute`
+  - `GET /api/execute`
     - Accepts a natural language message (e.g., *“Find me Japanese restaurants near Manila with good ratings”*).
     - Calls **OpenAI** to parse the message into a structured JSON request accepted by **Foursquare Places API**.
     - Returns a standardized **Restaurant DTO**:
@@ -37,12 +32,10 @@ The application is containerized with Docker, deployed via **Terraform** (IaC), 
 - **Domain**
   - Configured with **DuckDNS** for custom domain setup.
 
----
-
 ## 🛠️ Local Development
 
 ### Requirements
-- Python 3.10+
+- Python 3.11+
 - [Poetry](https://python-poetry.org/) for dependency management
 - Docker (for containerized builds)
 - Terraform (if you want to deploy infra)
@@ -63,8 +56,6 @@ python -m app
 The API will be available at [http://localhost:8000](http://localhost:8000).
 Interactive Swagger docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
----
-
 ## 🧪 Testing
 
 The project uses **pytest**. Note that you’ll need valid API keys for OpenAI and Foursquare:
@@ -74,8 +65,6 @@ OPENAI_API_KEY=your_key \
 FOURSQUARE_SERVICE_KEY=your_key \
 pytest -sv
 ```
-
----
 
 ## 📦 Docker
 
@@ -117,8 +106,9 @@ terraform apply
 This project uses **DuckDNS** for domain management. Update DNS accordingly after deployment.
 
 ## 📋 Roadmap / Improvements
-
+* [ ] Save requests/responses (parsing) from OpenAI for dataset
 * [ ] Add caching layer for frequent queries
 * [ ] Improve test coverage (mock OpenAI & Foursquare calls)
 * [ ] Expand infra to support multi-region deployments
-* [ ] Add authentication/authorization
+* [ ] Add JWT authentication/authorization
+* [ ] Expand `SearchPlacesDto` to accomodate other query
