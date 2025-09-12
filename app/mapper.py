@@ -11,11 +11,14 @@ def map_geospatial_response(response_data: dict) -> GeospatialResponse:
 
 
 def _map_result(data: dict) -> RestaurantDto:
+    operating_hours = None
+    if data.get("hours"):
+        operating_hours = data.get("hours").get("display")
     return RestaurantDto(
         name=data.get("name"),
         cuisine=_map_cuisine(data.get("categories")),
         address=data.get("location").get("formatted_address"),
-        operating_hours=data.get("hours").get("display"),
+        operating_hours=operating_hours,
         rating=data.get("rating"),
         price_level=data.get("price")
     )

@@ -14,7 +14,7 @@ class RestaurantDto(BaseModel):
     name: str
     cuisine: str
     address: str
-    operating_hours: str
+    operating_hours: str | None = None
     rating: float | None = None
     price_level: int | None = None
 
