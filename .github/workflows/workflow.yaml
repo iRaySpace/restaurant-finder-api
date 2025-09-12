@@ -1,0 +1,44 @@
+name: Restaurant Finder API to ECR
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        type: string
+        description: Tag to apply to images
+        default: snapshot-artifact
+      aws_account_id:
+        type: string
+        description: AWS Account ID
+      ecr_registry:
+        type: string
+        description: ECR registry path
+
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          registries: ${{ inputs.aws_account_id }}
+      
+      - name: Build and push image to Amazon ECR
+        id: build-push-ecr
+        shell: bash
+        env:
+          IMAGE_TAG: ${{ inputs.image_tag }}
+        run: |
+          docker build -t "$ECR_REGISTRY/restaurant-finder-api:$IMAGE_TAG" .
+          docker push "$ECR_REGISTRY/restaurant-finder-api:$IMAGE_TAG"
+          echo "IMAGE $IMAGE_TAG is pushed"
