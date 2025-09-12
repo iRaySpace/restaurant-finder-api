@@ -36,7 +36,7 @@ docker ps
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${var.ecr_url}
 aws s3 cp s3://${aws_s3_bucket.restaurant_finder_bucket.bucket}/.env ~/.env
 echo -e "\nINSTANCE_ID=$(ec2-metadata -i | sed 's/instance-id: //g')" >> ~/.env
-docker run --name restaurant-finder-api --env-file ~/.env -p 80:8000 ${var.ecr_url}/restaurant-finder-api:latest
+docker -d run --name restaurant-finder-api --env-file ~/.env -p 80:8000 ${var.ecr_url}/restaurant-finder-api:latest
 EOF
 
 }
