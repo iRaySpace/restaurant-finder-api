@@ -1,5 +1,6 @@
 import os
 import boto3
+from boto3.session import Session
 
 
 _metrics = None
@@ -17,4 +18,5 @@ def register_cw_metrics():
     if not cw_namespace:
         return
 
-    _metrics = boto3.client("cloudwatch")
+    boto3_session = Session(region_name="us-east-1")
+    _metrics = boto3_session.client("logs")
