@@ -39,7 +39,7 @@ resource "aws_cloudwatch_dashboard" "restaurant_finder_dashboard" {
       },
       {
         "x" : 0,
-        "y" : 0,
+        "y" : 12,
         "width" : 12,
         "height" : 12,
         "type" : "metric",
